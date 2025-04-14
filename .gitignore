@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment data
+.env
+venv/
+env/
+ENV/
+*.egg-info/
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.bak
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Packages
+parts/
+build/
+develop-eggs/
+.tox/
+doc/_build/
+
+# Distribution / packaging
+dist/
+sdist/
+*.egg
+*.whl
+
+# Jupyter Notebook related files
+.ipynb_checkpoints
