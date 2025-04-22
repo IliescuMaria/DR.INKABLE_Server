@@ -2,26 +2,33 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>ESP32 LED Control</title>
+    <title>DR.INKABLE Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='StyleCss/Style.css') }}">
-   
+    
 </head>
-
-
 <body>
     <svg height="300" width="400" xmlns="http://www.w3.org/2000/svg">
         <image class="sus" height="200" width="400" href="{{ url_for('static', filename='Images/Vector2.svg') }}" />
     </svg>
 
-    <div class = "imagine"> 
+  <div class="logo">
+    <img class="imagineLogo" src="{{ url_for('static', filename='Images/Logo.png') }}" />
+  </div>
+
+    <div class = "imagine">
+      
         <img class="mij" src="{{ url_for('static', filename='Images/DR.INKABLE_3.0.png') }}" />
     </div>
 
+    <div class="light-blue-rectangle"></div>
+    <div class="dark-blue-rectangle"></div>
+
 
    <div class="mergi">
-    <button id="toggleButton"></button>
+        <button id="toggleButton">
+            <img id="statusImage" src="{{ url_for('static', filename='Images/status-off.png') }}" alt="Status Off" width="50" height="50">
+        </button>
    </div>
-
 
     <div id="status">
         <h2>Status: <span id="led-status">Unknown</span></h2>
@@ -30,42 +37,58 @@
     <script>
         const toggleButton = document.getElementById('toggleButton');
         const ledStatusSpan = document.getElementById('led-status');
-
+        const darkBlueRectangle = document.querySelector('.dark-blue-rectangle'); // Get the existing rectangle
+        const statusImage = document.getElementById('statusImage'); // Get the button image
+        
         toggleButton.addEventListener('click', function() {
-            fetch('/api/send_command', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'action=toggle'
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-                updateStatus(); // Update the displayed status after toggle
-            })
-            .catch(error => {
-                alert('Error sending command to server.');
-            });
+        fetch('/api/send_command', {
+         method: 'POST',
+         headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+         },
+         body: 'action=toggle'
+         })
+        .then(response => response.json())
+        .then(data => {
+         alert(data.message);
+        updateStatus();
+        })
+         .catch(error => {
+       alert('Error sending command to server.');
+     });
         });
-
+        
         function updateStatus() {
-            fetch('/api/get_status')
-                .then(response => response.json())
-                .then(statusData => {
-                    ledStatusSpan.textContent = statusData.led_state ? 'ON' : 'OFF';
-                })
-                .catch(error => {
-                    ledStatusSpan.textContent = 'Error';
-                });
+     fetch('/api/get_status')
+     .then(response => response.json())
+     .then(statusData => {
+    ledStatusSpan.textContent = statusData.led_state ? 'ON' : 'OFF';
+        
+         if (statusData.led_state === true) {
+         // Status is ON
+                        darkBlueRectangle.style.display = 'block';
+                        statusImage.src = "{{ url_for('static', filename='Images/status-on.png') }}";
+                        statusImage.alt = "Status On";
+                    } else {
+                        // Status is OFF
+                        darkBlueRectangle.style.display = 'none';
+                        statusImage.src = "{{ url_for('static', filename='Images/status-off.png') }}";
+                        statusImage.alt = "Status Off";
+         }
+         })
+         .catch(error => {
+         ledStatusSpan.textContent = 'Error';
+        });
         }
+        
+         updateStatus(); // Initial status update
+         setInterval(updateStatus, 1000);
+     </script>
 
-        updateStatus(); // Initial status update
-        setInterval(updateStatus, 1000);
-    </script>
-
-    <svg height="300" width="400" xmlns="http://www.w3.org/2000/svg">
-        <image class="jos" height="200" width="400" href="{{ url_for('static', filename='Images/VectorJos.svg') }}" />
-    </svg>
+    <div id="imagineJos">
+        <svg height="300" width="400" xmlns="http://www.w3.org/2000/svg">
+            <image class="jos" height="200" width="400" href="{{ url_for('static', filename='Images/VectorJos.svg') }}" />
+        </svg>
+    </div>
 </body>
 </html>

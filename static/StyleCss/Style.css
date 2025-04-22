@@ -1,4 +1,5 @@
 body {
+    overflow-y: hidden;
     overflow-x: hidden;
     position: relative;
     margin-top: -20%;
@@ -19,32 +20,101 @@ button#toggleButton {
   top: 0%;
   padding: 20px 50px; /* Increase top/bottom and left/right padding */
   font-size: 20px; 
-  cursor:pointer;   /* You might want to increase font size too */
+  cursor:pointer; 
+ 
+  transform: translateY(-490%) scale(2);
+   /* You might want to increase font size too */
 }
 
 .mij{
-    transform: scale(0.5) translateX(-30%);
+    transform: scale(0.4) translateX(-50%) translateY(-60%);
+    margin-top: 0%;
+    border-bottom: 0;
 }
 
-#imagine.relative{
-    position: relative;
-    
-}
 
 #status {
-    transform: translateY(0%);
+    transform: translateY(-1500%);
     margin-top: 30px;
     /* font-weight: bold;  */
     font-size: 18px;
+  
+     /* Change to your desired color */
 }
 
 .sus {
-    transform: translateY(0%) scale(1.1) rotate(3deg) translateX(-3%);
+    transform: translateY(0%) scale(1.1) rotate(-7deg) translateX(-3%);
     margin-bottom: 0;
 }
 
 .jos {
-    transform: translateY(15%) scale(1.3) rotate(-8deg) translateX(-7%);
+    transform: translateY(0%) scale(1.3) rotate(-8deg) translateX(-7%);
+    
+
 
 }
+
+.imagine{
+   
+    transform: translateY(-30%) translateX(3%);
+    
+    height: 40%;
+}
+
+#imagineJos{
+
+    transform: translateY(-200%)
+}
+
+.mergi button {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.mergi button:focus {
+    outline: none; /* Remove default focus outline if you add your own */
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+
+  .logo {
+    position: relative; /* Only needed if you want the logo positioned relative to this container */
+}
+
+.imagineLogo {
+    position: absolute;
+    transform: scale(2.2) translateY(-170%) translateX(-110%); /* Adjust the scale as needed */
+    /* Adjust the scale as needed */
+    /* Adjust the top distance */
+    /* Adjust the left distance */
+    height: 60px; /* Adjust the logo height */
+    /* You can also set width if needed */
+    z-index: 10; /* Ensure it's above other elements if necessary */
+}
+
+.light-blue-rectangle {
+    width: 300px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    background-color: #dff2ff; /* Sets the background color */
+    border: 1px solid #dff2ff;
+    transform: translateY(-1600%) translateX(12%); 
+    border-radius: 15px;/* Optional: Adds a subtle border */
+  }
+
+  .dark-blue-rectangle {
+    position:absolute;
+    width: 40px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    background-color: #359ee4; /* Sets the background color */
+    border: 1px solid #359ee4;
+    transform: translateY(-1700%) translateX(90%); 
+    border-radius: 15px;/* Optional: Adds a subtle border */
+  }
+
+  /* Add these styles to your static/StyleCss/Style.css file */
 
